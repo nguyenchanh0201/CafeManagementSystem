@@ -1,0 +1,13 @@
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\bin\Debug\CafeManagementSystem.exe.config
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\bin\Debug\CafeManagementSystem.exe
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\bin\Debug\CafeManagementSystem.pdb
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\GUI.csproj.AssemblyReference.cache
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.frmLogin.resources
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.Properties.Resources.resources
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\GUI.csproj.GenerateResource.cache
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\GUI.csproj.CoreCompileInputs.cache
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.exe
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.pdb
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.frmMain.resources
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.frmHome.resources
+D:\Study\HK2-2024\Software Tech\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.frmSale.resources
