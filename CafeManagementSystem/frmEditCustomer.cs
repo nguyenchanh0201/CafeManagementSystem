@@ -45,7 +45,7 @@ namespace CafeManagementSystem
         {
             string customerName = txtName.Text;
             string phoneNumber = txtPhone.Text;
-            int customerID = Convert.ToInt32(txtID.Text);
+            string customerID = txtID.Text;
             BLLCustomer.update(customerName, phoneNumber,customerID);
             MessageBox.Show("Update success");
             grd.Refresh();
@@ -53,7 +53,7 @@ namespace CafeManagementSystem
 
         private void Delete_Click(object sender, EventArgs e)
         {
-            int customerID = Convert.ToInt32(txtID.Text);
+            string customerID = txtID.Text;
             //YesNo Message
             DialogResult result = MessageBox.Show("Do you want to delete this customer?", "Delete", MessageBoxButtons.YesNo);
             if (result == DialogResult.No)

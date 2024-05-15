@@ -324,6 +324,7 @@
             this.bApplyDiscount.TabIndex = 39;
             this.bApplyDiscount.Text = "Apply";
             this.bApplyDiscount.UseVisualStyleBackColor = true;
+            this.bApplyDiscount.Click += new System.EventHandler(this.bApplyDiscount_Click);
             // 
             // bDelete
             // 

@@ -34,3 +34,12 @@ C:\Users\Admin\Source\Repos\CNPM\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cach
 C:\Users\Admin\Source\Repos\CNPM\DAL\obj\Debug\DAL.csproj.CopyComplete
 C:\Users\Admin\Source\Repos\CNPM\DAL\obj\Debug\DAL.dll
 C:\Users\Admin\Source\Repos\CNPM\DAL\obj\Debug\DAL.pdb
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\bin\Debug\DAL.dll
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\bin\Debug\DAL.pdb
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\bin\Debug\DTO.dll
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\bin\Debug\DTO.pdb
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\obj\Debug\DAL.dll
+C:\Users\ASUS\source\repos\CafeManagementSystem\DAL\obj\Debug\DAL.pdb

@@ -71,6 +71,13 @@ namespace CafeManagementSystem
                 //Close the form
                 BLLOrderData.updatePaymentMethodAndTotal(frmPlaceOrder.orderID, paymentMethod, Convert.ToDecimal(frmPlaceOrder.total));
                 BLLTableCards.changeStatus(frmPlaceOrder.tableID, "Empty");
+
+                //get Customer ID from order ID
+                string customerID = BLLOrderData.getCustomerIDFromOrderID(frmPlaceOrder.orderID);
+                //Update customer points
+                BLLCustomer.updateCustomerPoints(customerID, Convert.ToInt32(frmPlaceOrder.total / 10));
+
+                //Close the form
                 this.Close();
                 foreach (Form form in Application.OpenForms)
                 {
@@ -95,6 +102,11 @@ namespace CafeManagementSystem
                 MessageBox.Show("Bill printed successfully");
                 //Close the form
                 BLLOrderData.updatePaymentMethodAndTotal(frmPlaceOrder.orderID, paymentMethod, Convert.ToDecimal(frmPlaceOrder.total));
+                BLLTableCards.changeStatus(frmPlaceOrder.tableID, "Empty");
+                //get Customer ID from order ID
+                string customerID = BLLOrderData.getCustomerIDFromOrderID(frmPlaceOrder.orderID);
+                //Update customer points
+                BLLCustomer.updateCustomerPoints(customerID, Convert.ToInt32(frmPlaceOrder.total / 10));
                 this.Close();
                 foreach (Form form in Application.OpenForms)
                 {

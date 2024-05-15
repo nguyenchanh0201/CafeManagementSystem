@@ -43,6 +43,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -282,6 +283,12 @@
     <Compile Include="frmTableCard.Designer.cs">
       <DependentUpon>frmTableCard.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTrackRevenue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTrackRevenue.Designer.cs">
+      <DependentUpon>frmTrackRevenue.cs</DependentUpon>
+    </Compile>
     <Compile Include="MoMoSecurity.cs" />
     <Compile Include="PaymentRequest.cs" />
     <Compile Include="Program.cs" />
@@ -396,6 +403,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTableCard.resx">
       <DependentUpon>frmTableCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTrackRevenue.resx">
+      <DependentUpon>frmTrackRevenue.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

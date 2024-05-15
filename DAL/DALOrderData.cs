@@ -105,14 +105,61 @@ namespace DAL
             Connection.actionQuery(sql);
         }
 
-        public void updateOrderCustomer(string orderID, int customerID)
+        public void updateOrderCustomer(string orderID, string customerID)
         {
             string sql = "update Orders set customerID = '" + customerID + "' where orderID = '" + orderID + "'";
             Connection.actionQuery(sql);
         }
 
 
+        public string getCustomerIDFromOrderID(string orderID)
+        {
+            string sql = "select customerID from Orders where orderID = '" + orderID + "'";
+            return Connection.selectQuery(sql).Rows[0][0].ToString();
 
+        }
+
+        //Track Revenute Data from here
+
+        //get distince year of all orders
+        public List<int> getDistinctYear()
+        {
+            List<int> list = new List<int>();
+            string sql = "select distinct year(orderDate) as year from Orders";
+            DataTable dt = Connection.selectQuery(sql);
+            foreach (DataRow dr in dt.Rows)
+            {
+                list.Add(Convert.ToInt32(dr["year"]));
+            }
+            return list;
+
+        }
+
+        //get revenue by month
+        public DataTable getRevenueByMonth(int year)
+        {
+            string sql = "select month(orderDate) as month, sum(total) as revenue from Orders where year(orderDate) = " + year + " group by month(orderDate)";
+            return Connection.selectQuery(sql);
+        }
+        //get revenue by day
+        public DataTable getRevenueByDay(int year, int month)
+        {
+            string sql = "select day(orderDate) as day, sum(total) as revenue from Orders where year(orderDate) = " + year + " and month(orderDate) = " + month + " group by day(orderDate)";
+            return Connection.selectQuery(sql);
+        }
+
+        //get revenue by shift
+        public DataTable getRevenueByShift(int year, int month, int day)
+        {
+            string sql = "select shiftID, sum(total) as revenue from Orders where year(orderDate) = " + year + " and month(orderDate) = " + month + " and day(orderDate) = " + day + " group by shiftID";
+            return Connection.selectQuery(sql);
+        }
+
+        public DataTable getRevenueByYear()
+        {
+            string sql = "SELECT DISTINCT(YEAR(orderDate)) AS Years, SUM(total) AS Revenue FROM Orders WHERE YEAR(orderDate) = 2024 GROUP BY YEAR(orderDate);";
+            return Connection.selectQuery(sql);
+        }
 
 
     }

@@ -32,7 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.bHome = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lbDate = new System.Windows.Forms.Label();
             this.bClose = new System.Windows.Forms.Button();
             this.txtClosetime = new System.Windows.Forms.Label();
             this.txtOpentime = new System.Windows.Forms.Label();
@@ -42,6 +41,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbDate = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label6 = new System.Windows.Forms.Label();
@@ -102,16 +102,6 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "List of available shifts";
             // 
-            // lbDate
-            // 
-            this.lbDate.AutoSize = true;
-            this.lbDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDate.Location = new System.Drawing.Point(320, 65);
-            this.lbDate.Name = "lbDate";
-            this.lbDate.Size = new System.Drawing.Size(48, 24);
-            this.lbDate.TabIndex = 29;
-            this.lbDate.Text = "Date";
-            // 
             // bClose
             // 
             this.bClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
@@ -129,7 +119,7 @@
             // 
             this.txtClosetime.AutoSize = true;
             this.txtClosetime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtClosetime.Location = new System.Drawing.Point(606, 164);
+            this.txtClosetime.Location = new System.Drawing.Point(517, 164);
             this.txtClosetime.Name = "txtClosetime";
             this.txtClosetime.Size = new System.Drawing.Size(53, 24);
             this.txtClosetime.TabIndex = 27;
@@ -139,7 +129,7 @@
             // 
             this.txtOpentime.AutoSize = true;
             this.txtOpentime.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOpentime.Location = new System.Drawing.Point(606, 117);
+            this.txtOpentime.Location = new System.Drawing.Point(517, 117);
             this.txtOpentime.Name = "txtOpentime";
             this.txtOpentime.Size = new System.Drawing.Size(53, 24);
             this.txtOpentime.TabIndex = 26;
@@ -149,7 +139,7 @@
             // 
             this.txtEmployee.AutoSize = true;
             this.txtEmployee.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmployee.Location = new System.Drawing.Point(606, 78);
+            this.txtEmployee.Location = new System.Drawing.Point(517, 78);
             this.txtEmployee.Name = "txtEmployee";
             this.txtEmployee.Size = new System.Drawing.Size(61, 24);
             this.txtEmployee.TabIndex = 25;
@@ -159,7 +149,7 @@
             // 
             this.txtShiftID.AutoSize = true;
             this.txtShiftID.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtShiftID.Location = new System.Drawing.Point(606, 40);
+            this.txtShiftID.Location = new System.Drawing.Point(517, 40);
             this.txtShiftID.Name = "txtShiftID";
             this.txtShiftID.Size = new System.Drawing.Size(67, 24);
             this.txtShiftID.TabIndex = 24;
@@ -204,6 +194,16 @@
             this.label1.Size = new System.Drawing.Size(67, 24);
             this.label1.TabIndex = 20;
             this.label1.Text = "Shift ID";
+            // 
+            // lbDate
+            // 
+            this.lbDate.AutoSize = true;
+            this.lbDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDate.Location = new System.Drawing.Point(320, 65);
+            this.lbDate.Name = "lbDate";
+            this.lbDate.Size = new System.Drawing.Size(48, 24);
+            this.lbDate.TabIndex = 29;
+            this.lbDate.Text = "Date";
             // 
             // groupBox2
             // 

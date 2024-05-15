@@ -29,5 +29,10 @@ namespace CafeManagementSystem
         {
             AddControls(new frmRank());
         }
+
+        private void btnMember_Click(object sender, EventArgs e)
+        {
+            AddControls(new frmCustomer());
+        }
     }
 }

@@ -34,15 +34,16 @@ namespace CafeManagementSystem
                 }
                 else
                 {
-                    return; 
+                    return;
                 }
             }
             else
             {
                 string orderID = frmPlaceOrder.orderID;
-                int customerID = customers[0].getCustomerID();
+                string customerID = customers[0].getCustomerID();
                 BLLOrderData.updateOrderCustomer(orderID, customerID);
                 MessageBox.Show("Add customer successfully");
+                this.Close();
             }
         }
 
@@ -50,12 +51,13 @@ namespace CafeManagementSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BLLCustomer.insert(txtName.Text, txtNewPhone.Text, listBox1.Text, 0, 1);
+            BLLCustomer.insert(txtName.Text, txtNewPhone.Text, listBox1.Text, 0, "R001");
             string orderID = frmPlaceOrder.orderID;
-            int customerID = BLLCustomer.getCustomerByPhone(txtNewPhone.Text)[0].getCustomerID();
+            string customerID = BLLCustomer.getCustomerByPhone(txtNewPhone.Text)[0].getCustomerID();
             BLLOrderData.updateOrderCustomer(orderID, customerID);
             //Message success
             MessageBox.Show("Add new customer successfully");
+            this.Close();
         }
     }
 }

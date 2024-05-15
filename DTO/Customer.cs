@@ -9,14 +9,14 @@ namespace DTO
 {
     public class Customer
     {
-        private int customerID;
+        private string customerID;
         private string customerName;
         private string phoneNumber;
         private string gender;
         private int points;
-        private int rankID;
+        private string rankID;
 
-        public Customer(int customerID, string customerName, string phoneNumber, string gender, int points, int rankID)
+        public Customer(string customerID, string customerName, string phoneNumber, string gender, int points, string rankID)
         {
             this.customerID = customerID;
             this.customerName = customerName;
@@ -26,7 +26,7 @@ namespace DTO
             this.rankID = rankID;
         }
 
-        public int getCustomerID()
+        public string getCustomerID()
         {
             return customerID;
         }
@@ -46,7 +46,7 @@ namespace DTO
             return points;
         }
 
-        public int getMembershipLevel()
+        public string getMembershipLevel()
         {
             return rankID;
         }
@@ -57,11 +57,11 @@ namespace DTO
         }
         public Customer(DataRow dr)
         {
-            this.customerID = Convert.ToInt32(dr["id"]);
+            this.customerID = dr["id"].ToString();
             this.customerName = dr["name"].ToString();
             this.phoneNumber = dr["phoneNum"].ToString();
             this.points = Convert.ToInt32(dr["points"]);
-            this.rankID = Convert.ToInt32(dr["rankID"]);
+            this.rankID = dr["rankID"].ToString();
             this.gender = dr["gender"].ToString();
         }
     }

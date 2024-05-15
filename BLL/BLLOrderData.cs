@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DAL;
 using DTO;
 using System.Data;
+using System.Net;
 
 
 namespace BLL
@@ -106,13 +107,73 @@ namespace BLL
             dalOrderData.delete(orderID);
         }
 
-        public static void updateOrderCustomer(string orderID, int customerID)
+        public static void updateOrderCustomer(string orderID, string customerID)
         {
             if (dalOrderData == null)
             {
                 dalOrderData = new DALOrderData("", DateTime.Now, 0, "", "", "", "", "", "");
             }
             dalOrderData.updateOrderCustomer(orderID, customerID);
+        }
+
+        
+        public static string getCustomerIDFromOrderID(string orderID)
+        {
+            if (dalOrderData == null)
+            {
+                dalOrderData = new DALOrderData("", DateTime.Now, 0, "", "", "", "", "", "");
+            }
+            return dalOrderData.getCustomerIDFromOrderID(orderID);
+        }
+
+
+
+        //TRack Revenue 
+
+
+        public static List<int> getDistinctYear()
+        {
+            if (dalOrderData == null)
+            {
+                dalOrderData = new DALOrderData("", DateTime.Now, 0, "", "", "", "", "", "");
+            }
+            return dalOrderData.getDistinctYear();
+        }
+
+        public static DataTable getRevenueByMonth(int year)
+        {
+            if (dalOrderData == null)
+            {
+                dalOrderData = new DALOrderData("", DateTime.Now, 0, "", "", "", "", "", "");
+            }
+            return dalOrderData.getRevenueByMonth(year);
+        }
+
+        public static DataTable getRevenueByDate(int year, int month)
+        {
+            if (dalOrderData == null)
+            {
+                dalOrderData = new DALOrderData("", DateTime.Now, 0, "", "", "", "", "", "");
+            }
+            return dalOrderData.getRevenueByDay(year, month);
+        }
+
+        public static DataTable getRevenueByShift(int year, int month, int day)
+        {
+            if (dalOrderData == null)
+            {
+                dalOrderData = new DALOrderData("", DateTime.Now, 0, "", "", "", "", "", "");
+            }
+            return dalOrderData.getRevenueByShift(year, month, day);
+        }
+
+        public static DataTable getRevenueByYear()
+        {
+            if (dalOrderData == null)
+            {
+                dalOrderData = new DALOrderData("", DateTime.Now, 0, "", "", "", "", "", "");
+            }
+            return dalOrderData.getRevenueByYear();
         }
     }
 }

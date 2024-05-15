@@ -60,6 +60,7 @@
             this.btnMember.TabIndex = 31;
             this.btnMember.Text = "Manager Member";
             this.btnMember.UseVisualStyleBackColor = false;
+            this.btnMember.Click += new System.EventHandler(this.btnMember_Click);
             // 
             // btnRank
             // 

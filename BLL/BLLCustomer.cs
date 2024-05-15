@@ -12,7 +12,7 @@ namespace BLL
     public class BLLCustomer
     {
         static DALCustomer dalCustomer;
-        public BLLCustomer(int customerID, String customerName, String phoneNumber, string gender, int points, int rankID)
+        public BLLCustomer(string customerID, String customerName, String phoneNumber, string gender, int points, string rankID)
         {
             dalCustomer = new DALCustomer(customerID, customerName, phoneNumber, gender, points, rankID);
         }
@@ -22,27 +22,27 @@ namespace BLL
             return dalCustomer.createCustomerID();
         }
 
-        public static void insert(String customerName, String phoneNumber, String gender, int points, int rankID)
+        public static void insert(String customerName, String phoneNumber, String gender, int points, string rankID)
         {
             if (dalCustomer == null)
             {
-                dalCustomer = new DALCustomer(0, "", "", "", 0, 0);
+                dalCustomer = new DALCustomer("", "", "", "", 0, "");
             }
             dalCustomer.insert(customerName, phoneNumber, gender, points, rankID);
         }
-        public static void update(String customerName, String phoneNumber,int customerID)
+        public static void update(String customerName, String phoneNumber,string customerID)
         {
             if(dalCustomer == null)
             {
-                dalCustomer = new DALCustomer(0, "", "", "", 0, 0);
+                dalCustomer = new DALCustomer("", "", "", "", 0, "");
             }
             dalCustomer.update(customerName, phoneNumber,customerID);
         }
-        public static void delete(int customerID)
+        public static void delete(string customerID)
         {
             if (dalCustomer == null)
             {
-                dalCustomer = new DALCustomer(0, "", "", "", 0, 0);
+                dalCustomer = new DALCustomer("", "", "", "", 0, "");
             }
             dalCustomer.delete(customerID);
         }
@@ -50,7 +50,7 @@ namespace BLL
         {
             if (dalCustomer == null)
             {
-                dalCustomer = new DALCustomer(0, "", "", "", 0, 0);
+                dalCustomer = new DALCustomer("", "", "", "", 0, "");
             }
             return dalCustomer.getCustomer();
         }
@@ -58,7 +58,7 @@ namespace BLL
         {
             if (dalCustomer == null)
             {
-                dalCustomer = new DALCustomer(0, "", "", "", 0, 0);
+                dalCustomer = new DALCustomer("", "", "", "", 0, "");
             }
             return dalCustomer.select();
         }
@@ -67,10 +67,18 @@ namespace BLL
         {
             if (dalCustomer == null)
             {
-                dalCustomer = new DALCustomer(0, "", "", "", 0, 0);
+                dalCustomer = new DALCustomer("", "", "", "", 0, "");
             }
             return dalCustomer.getCustomerByPhone(phoneNum);
         }
         
+        public static void updateCustomerPoints(string customerID, int points)
+        {
+            if (dalCustomer == null)
+            {
+                dalCustomer = new DALCustomer("", "", "", "", 0, "");
+            }
+            dalCustomer.updateCustomerPoints(customerID, points);
+        }
     }
 }

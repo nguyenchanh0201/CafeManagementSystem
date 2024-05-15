@@ -13,7 +13,7 @@ namespace DAL
     {
         Customer c;
 
-        public DALCustomer(int customerID, string customerName, string phoneNumber, string gender, int points, int rankID)
+        public DALCustomer(string customerID, string customerName, string phoneNumber, string gender, int points, string rankID)
         {
             c = new Customer(customerID, customerName, phoneNumber, gender, points, rankID);
         }
@@ -24,21 +24,23 @@ namespace DAL
             return Connection.selectQuery(sql).Rows[0][0].ToString();
         }
 
-        public void insert(String customerName, String phoneNumber, string gender, int points, int rankID)
+        public void insert(String customerName, String phoneNumber, string gender, int points, string rankID)
         {
-            string rankID1 = rankID.ToString();
+            
             string customerID = createCustomerID();
-            string sql = "insert into Customers values('" + customerID + "', N'" + customerName + "', '" + phoneNumber + "','" + gender + "'," + points + ", " + rankID1 + ")";
+            string sql = "INSERT INTO Customers (id, name, phoneNum, gender, points, rankID) VALUES ('" + customerID + "', N'" + customerName + "', '" + phoneNumber + "','" + gender + "'," + points + ", '" + rankID + "')";
+
             // Rest of the code
+
             Connection.actionQuery(sql);
         }
 
-        public void update(String customerName, String phoneNumber, int customerID)
+        public void update(String customerName, String phoneNumber, string customerID)
         {
             string sql = "update Customers set name = N'" + customerName + "', phoneNum = '" + phoneNumber + "' where id = '" + customerID + "'";
             Connection.actionQuery(sql);
         }
-        public void delete(int customerID)
+        public void delete(string customerID)
         {
             string sql = "delete from Customers where id = '" + customerID + "'";
             Connection.actionQuery(sql);
@@ -76,6 +78,11 @@ namespace DAL
             return list;
         }
 
+        public void updateCustomerPoints(string customerID, int points)
+        {
+            string sql = "update Customers set points = points + " + points + " where id = '" + customerID + "'";
+            Connection.actionQuery(sql);
+        }
 
 
 

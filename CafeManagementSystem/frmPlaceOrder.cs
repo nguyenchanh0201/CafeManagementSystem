@@ -244,7 +244,7 @@ namespace CafeManagementSystem
         {
             lbOrderID.Text = bLLOrderData.createOrderID();
             orderID = lbOrderID.Text;
-            bLLOrderData.AddOrderData(DateTime.Now, 0, frmLogin.username, tableID, lbOrder.Text, "0", frmShift.shiftID, "Not pay yet");
+            bLLOrderData.AddOrderData(DateTime.Now, 0, frmLogin.username, tableID, lbOrder.Text, "CS000", frmShift.shiftID, "Not pay yet");
             
              
 
@@ -270,7 +270,7 @@ namespace CafeManagementSystem
         private void bEdit_Click(object sender, EventArgs e)
         {
             //check if the order detail is selected or not
-            if (lbID.Text == "0")
+            if (lbID.Text == "CS000")
             {
                 MessageBox.Show("Please select the order detail you want to edit");
                 return;
@@ -324,6 +324,17 @@ namespace CafeManagementSystem
             lbTotal.Text = caltotal().ToString();
         }
 
-        
+        private void bApplyDiscount_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(txtDiscount.Text) > 100)
+            {
+                MessageBox.Show("Discount must be less than 100%");
+                return;
+            }
+            
+            lbTotal.Text = (Convert.ToDecimal(lbTotal.Text) - Convert.ToDecimal(lbTotal.Text) * Convert.ToDecimal(txtDiscount.Text) / 100).ToString();
+            total = Convert.ToDecimal(lbTotal.Text);
+
+        }
     }
 }
