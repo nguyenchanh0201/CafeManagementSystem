@@ -62,8 +62,15 @@ namespace DAL
         {
             // Get order details from database
             string sql = "SELECT * FROM OrderDetails WHERE orderID = '" + orderID + "'";
+            
             List<OrderDetail> list = new List<OrderDetail>();
+            DataTable dt = Connection.selectQuery(sql);
             // Add order details to list
+            foreach (DataRow dr in dt.Rows)
+            {
+                OrderDetail r = new OrderDetail(dr);
+                list.Add(r);
+            }
             return list;
         }
 
@@ -88,6 +95,8 @@ namespace DAL
             Connection.actionQuery(sql);
         }
 
+
+        
 
     }
 }

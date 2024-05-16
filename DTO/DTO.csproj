@@ -50,7 +50,6 @@
     <Compile Include="Rank.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Shift.cs" />
-    <Compile Include="StatisticalData.cs" />
     <Compile Include="TableCard.cs" />
     <Compile Include="Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

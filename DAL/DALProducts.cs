@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using DTO;
 using System.Data;
+using System.Reflection;
+using System.Security.Policy;
+using System.Xml.Linq;
 
 namespace DAL
 {
@@ -36,15 +39,18 @@ namespace DAL
        public void insertProduct(string productName, string categoryID, decimal price)
         {
             string productID = createProductID();
-            string sql = "insert into Products values('" + productID + "', N'" + productName + "', '" + categoryID + "', " + price + ", 1)";
+            int status = 1;
+            string sql = "INSERT INTO Products (pid, pname, price, status, cateID) VALUES ('" + productID + "', N'" + productName + "', '" + price + "','" + status + "','" + categoryID + "')";
             Connection.actionQuery(sql);
         }
 
-        public void updateProduct(string productID,string productName, string categoryID, decimal price)
+        public void updateProduct(string productID, string productName, string categoryID, decimal price)
         {
-            string sql = "update Products set pName = N'" + productName + "', cateID = '" + categoryID + "', price";
+            string sql = "update Products set pname = N'" + productName + "', cateID = '" + categoryID + "', price = '" + price + "' where PID = '" + productID + "'";
+            
             Connection.actionQuery(sql);
         }
+
         public void deleteProduct(string productID)
         {
             string sql = "delete from Products where PID = '" + productID + "'";

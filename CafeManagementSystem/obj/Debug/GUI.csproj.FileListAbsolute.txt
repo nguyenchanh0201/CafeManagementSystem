@@ -314,3 +314,7 @@ C:\Users\ASUS\source\repos\CafeManagementSystem\CafeManagementSystem\obj\Debug\G
 C:\Users\ASUS\source\repos\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.exe
 C:\Users\ASUS\source\repos\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.pdb
 C:\Users\ASUS\source\repos\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.frmTrackRevenue.resources
+C:\Users\ASUS\source\repos\CafeManagementSystem\CafeManagementSystem\obj\Debug\CafeManagementSystem.frmOrderDetails.resources
+C:\Users\ASUS\source\repos\CafeManagementSystem\CafeManagementSystem\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\ASUS\source\repos\CafeManagementSystem\CafeManagementSystem\bin\Debug\itextsharp.dll
+C:\Users\ASUS\source\repos\CafeManagementSystem\CafeManagementSystem\bin\Debug\itextsharp.xml

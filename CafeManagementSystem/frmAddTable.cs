@@ -24,6 +24,8 @@ namespace CafeManagementSystem
             string tableName = txtName.Text;
             BLLTableCards bLLTableCards = new BLLTableCards("", "", "");
             BLLTableCards.insertTableCard(tableName);
+            MessageBox.Show("Table Added Successfully");
+            this.Close();
 
         }
 

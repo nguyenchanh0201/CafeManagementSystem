@@ -54,5 +54,12 @@ namespace CafeManagementSystem
 
             
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            //view order details ( bills )
+            frmOrderDetails frmOrderDetails = new frmOrderDetails();
+            frmOrderDetails.ShowDialog();
+        }
     }
 }

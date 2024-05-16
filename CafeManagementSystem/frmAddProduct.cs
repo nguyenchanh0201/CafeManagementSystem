@@ -25,7 +25,7 @@ namespace CafeManagementSystem
             List<ProductCategory> cates = BLLCategories.getCategory();
             foreach (ProductCategory cate in cates)
             {
-                listBox1.Items.Add(cate.getCategoryID() + cate.getCategoryName());
+                listBox1.Items.Add(cate.getCategoryID() + "." + cate.getCategoryName());
             }
         }
 
@@ -33,14 +33,14 @@ namespace CafeManagementSystem
         {
             
             string productName = txtName.Text;
-            string productPrice = txtPrice.Text;
-            string productCate = listBox1.SelectedItem.ToString().Split('.')[0];
+            decimal productPrice = Convert.ToDecimal(txtPrice.Text);
+            
             if (listBox1.SelectedItem != null)
             {
-                int cateID = Convert.ToInt32(listBox1.SelectedItem.ToString().Split('.')[0]);
-                BLLProducts.insert(productName, productPrice, cateID);
+                string productCate = listBox1.SelectedItem.ToString().Split('.')[0];
+                BLLProducts.insert(productName, productCate, productPrice );
 
-                MessageBox.Show("Account Added Successfully, reload to see new contents");
+                MessageBox.Show("Product Added Successfully, reload to see new contents");
 
                 this.Close();
             }
@@ -49,6 +49,11 @@ namespace CafeManagementSystem
                 MessageBox.Show("Please select a category");
             }
 
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

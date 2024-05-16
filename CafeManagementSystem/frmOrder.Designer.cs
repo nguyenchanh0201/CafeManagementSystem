@@ -151,6 +151,7 @@
             this.btnAdd.TabIndex = 1;
             this.btnAdd.Text = "View OrderDetails";
             this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel1
             // 

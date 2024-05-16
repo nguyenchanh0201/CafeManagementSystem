@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using DAL;
+using DTO;
 
 namespace BLL
 {
@@ -77,6 +79,15 @@ namespace BLL
                 dalorderdetails = new DALOrderDetails(0, "", "", "", 0, 0);
             }
             dalorderdetails.deleteOrderDetail(orderDetailID);
+        }
+
+        public static List<OrderDetail> getOrderDetailsListByOrderID(string orderID)
+        {
+            if (dalorderdetails == null)
+            {
+                dalorderdetails = new DALOrderDetails(0, "", "", "", 0, 0);
+            }
+            return dalorderdetails.GetOrderDetails(orderID);
         }
     }
 }
