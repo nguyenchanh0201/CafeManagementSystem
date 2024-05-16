@@ -1,7 +1,9 @@
 create database Cafe
 
+
+--Role
 create table Role (
- roleid int identity(1,1) primary key , 
+ roleID int identity(1,1) primary key , 
  roleName varchar(30) not null 
 )
 
@@ -12,6 +14,8 @@ insert into role (roleName) values
 	('manager'),
 	('owner')
 
+
+--Users
 create table users (
 	username varchar(20) primary key , 
 	password varchar(30) not null , 
@@ -45,40 +49,115 @@ insert into users (username, password, roleID) values
 
 
 
-
+--TableCards
 create table tableCards (
 	id varchar(5) primary key,
 	tableName nvarchar(20) not null , 
 	status nvarchar(10) not null, 
 )
 
-	
-
-
+--drop proc GenerateNewTableID
 go
-CREATE PROCEDURE AddNewTableCards
+CREATE PROCEDURE GenerateNewTableID
 AS
 BEGIN
-    DECLARE @Counter INT = 1;
+    SET NOCOUNT ON;
 
-    WHILE @Counter <= 18
+    DECLARE @MaxID VARCHAR(10);
+    DECLARE @NewID VARCHAR(10);
+    DECLARE @NumericPart INT;
+
+    -- Step 1: Get the highest existing ID from TableCards
+    SELECT @MaxID = MAX(ID) FROM TableCards;
+
+    -- Step 2: If there are no existing IDs, start with 'T000'
+    IF @MaxID IS NULL
     BEGIN
-        DECLARE @TableID NVARCHAR(50) = CONCAT('T00', @Counter);
-        DECLARE @TableName NVARCHAR(100) = CONCAT('Table ', @Counter);
-        DECLARE @Status NVARCHAR(50) = 'Empty'; -- You can set the default status here
-
-        INSERT INTO TableCards (ID, TableName, Status)
-        VALUES (@TableID, @TableName, @Status);
-
-        SET @Counter = @Counter + 1;
+        SET @MaxID = 'T000';
     END
-END
+
+    -- Step 3: Extract the numeric part from the existing highest ID
+    SET @NumericPart = CAST(SUBSTRING(@MaxID, 2, 3) AS INT);
+
+    -- Step 4: Increment the numeric part by 1
+    SET @NumericPart = @NumericPart + 1;
+
+    -- Step 5: Format the new ID
+    SET @NewID = 'T' + RIGHT('000' + CAST(@NumericPart AS VARCHAR(3)), 3);
+
+    -- Step 6: Return the new ID
+    SELECT @NewID AS NewID;
+END;
 go
+
+
+
+go
+CREATE PROCEDURE AddTwentyTableIDs
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @MaxID VARCHAR(5);
+    DECLARE @NewID VARCHAR(5);
+    DECLARE @NumericPart INT;
+    DECLARE @Count INT = 0;
+    DECLARE @TableNumber INT;
+    DECLARE @BaseTableName NVARCHAR(50);
+    DECLARE @NewTableName NVARCHAR(50);
+
+    -- Get the highest existing ID from TableCard
+    SELECT @MaxID = MAX(id) FROM TableCards;
+
+    -- If there are no existing IDs, start with 'T000'
+    IF @MaxID IS NULL
+    BEGIN
+        SET @MaxID = 'T000';
+    END
+
+    -- Extract the numeric part from the existing highest ID
+    SET @NumericPart = CAST(SUBSTRING(@MaxID, 2, 3) AS INT);
+
+    -- Loop to generate and insert 20 new IDs
+    WHILE @Count < 20
+    BEGIN
+        -- Increment the numeric part by 1
+        SET @NumericPart = @NumericPart + 1;
+
+        -- Format the new ID
+        SET @NewID = 'T' + RIGHT('000' + CAST(@NumericPart AS VARCHAR(3)), 3);
+
+        -- Start with table number 01
+        SET @TableNumber = 1;
+        SET @BaseTableName = 'table';
+
+        -- Determine the next available tableName
+        WHILE EXISTS (SELECT 1 FROM TableCards WHERE tableName = @BaseTableName + RIGHT('00' + CAST(@TableNumber AS VARCHAR(2)), 2))
+        BEGIN
+            SET @TableNumber = @TableNumber + 1;
+        END
+
+        -- Format the new tableName
+        SET @NewTableName = @BaseTableName + RIGHT('00' + CAST(@TableNumber AS VARCHAR(2)), 2);
+
+        -- Insert the new ID into TableCard with the determined tableName and default status
+        INSERT INTO TableCards (id, tableName, status) 
+        VALUES (@NewID, @NewTableName, 'Empty');
+
+        -- Increment the counter
+        SET @Count = @Count + 1;
+    END
+END;
+GO
+
+
 --Table : 0 - Empty
 --Table : 1 - Processing
 --drop proc AddNewTableCards
-exec AddNewTableCards
+exec AddTwentyTableIDs;
 
+
+--Category
 create table categories (
 	cateID varchar(5) primary key , 
 	cateName nvarchar(30) not null 
@@ -94,9 +173,42 @@ INSERT INTO categories (cateID, cateName) VALUES
     ('C007', 'Tea'),
     ('C008', 'Drinks');
 
+GO
+-- Create the new stored procedure
+CREATE PROCEDURE GenerateNewCategoryID
+AS
+BEGIN
+    SET NOCOUNT ON;  -- Prevent extra result sets from interfering with SELECT statements
 
+    DECLARE @MaxID VARCHAR(5);       -- Variable to hold the maximum existing ID
+    DECLARE @NewID VARCHAR(5);       -- Variable to hold the new ID to be generated
+    DECLARE @NumericPart INT;        -- Variable to hold the numeric part of the ID
 
+    -- Step 1: Get the highest existing ID from categories
+    SELECT @MaxID = MAX(cateID) FROM categories;
 
+    -- Step 2: If there are no existing IDs, start with 'C000'
+    IF @MaxID IS NULL
+    BEGIN
+        SET @MaxID = 'C000';
+    END
+
+    -- Step 3: Extract the numeric part from the existing highest ID
+    SET @NumericPart = CAST(SUBSTRING(@MaxID, 2, 3) AS INT);
+
+    -- Step 4: Increment the numeric part by 1
+    SET @NumericPart = @NumericPart + 1;
+
+    -- Step 5: Format the new ID
+    SET @NewID = 'C' + RIGHT('000' + CAST(@NumericPart AS VARCHAR(3)), 3);
+
+    -- Step 6: Return the new ID
+    SELECT @NewID AS NewID;
+END;
+GO
+--exec GenerateNewCategoryID
+
+-- Products
 create table products (
 	pid varchar(5) primary key, 
 	pname nvarchar(30) not null , 
@@ -105,6 +217,41 @@ create table products (
 	cateID varchar(5) not null , 
 	foreign key (cateID) references categories(cateID) 
 )
+
+GO
+CREATE PROCEDURE GenerateNewProductID
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @MaxID VARCHAR(5);
+    DECLARE @NewID VARCHAR(5);
+    DECLARE @NumericPart INT;
+
+    -- Step 1: Get the highest existing pid from products
+    SELECT @MaxID = MAX(pid) FROM products;
+
+    -- Step 2: If there are no existing pids, start with 'P001'
+    IF @MaxID IS NULL
+    BEGIN
+        SET @MaxID = 'P000';
+    END
+
+    -- Step 3: Extract the numeric part from the existing highest pid
+    SET @NumericPart = CAST(SUBSTRING(@MaxID, 2, 3) AS INT);
+
+    -- Step 4: Increment the numeric part by 1
+    SET @NumericPart = @NumericPart + 1;
+
+    -- Step 5: Format the new pid
+    SET @NewID = 'P' + RIGHT('000' + CAST(@NumericPart AS VARCHAR(3)), 3);
+
+    -- Step 6: Return the new pid
+    SELECT @NewID AS NewID;
+END;
+GO
+
+--exec GenerateNewProductID
 
 
 -- Insert additional products for each category
@@ -158,7 +305,7 @@ INSERT INTO products (pid, pname, price, status, cateID) VALUES
 --select * from products where cateID = 'C001'
 
 
-
+--Shifts
 create table shift (
 	shiftID varchar(20) primary key ,
 	shiftStart datetime , 
@@ -209,18 +356,57 @@ END;
 go
 
 --exec generate_shiftID
+
+
+--Ranks
 create table Ranks (
 	rankID varchar(5) primary key ,
 	rankName nvarchar(30) not null , 
 	goalPoints int , 
 	discount int , 
 )
+select * from Ranks 
+
+
+go
+CREATE PROCEDURE GenerateRankID
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @MaxID VARCHAR(5);
+    DECLARE @NewID INT;
+    DECLARE @StringID VARCHAR(5);
+
+    -- Step 1: Get the highest existing rankID from Ranks
+    SELECT @MaxID = MAX(rankID) FROM Ranks WHERE rankID LIKE 'R%';
+
+    -- Step 2: If there are no existing IDs, start with 'R001', otherwise extract and increment the numeric part
+    IF @MaxID IS NULL
+    BEGIN
+        SET @NewID = 1;
+    END
+    ELSE
+    BEGIN
+        -- Extract the numeric part from the highest existing rankID
+        SET @NewID = CAST(SUBSTRING(@MaxID, 2, 3) AS INT) + 1;
+    END
+
+    -- Step 3: Convert the new ID back to a string with leading zeros
+    SET @StringID = 'R' + RIGHT('000' + CAST(@NewID AS VARCHAR(3)), 3);
+
+    -- Return the new rankID
+    SELECT @StringID AS NewRankID;
+END;
+go
+--exec GenerateRankID
 
 insert into ranks (rankID, rankName, goalPoints, discount) values 
-	('1', 'Bronze',1,0),
-	('2', 'Silver',100,5),
-	('3', 'Gold',200,10)
+	('R001', 'Bronze',1,0),
+	('R002', 'Silver',100,5),
+	('R003', 'Gold',200,10)
 
+--Customers
 CREATE TABLE Customers (
     id VARCHAR(5) PRIMARY KEY,
     name NVARCHAR(40),
@@ -231,22 +417,50 @@ CREATE TABLE Customers (
 	foreign key (rankID) references Ranks(rankID)
 );
 
+
 insert into Customers (id, name, phoneNum, gender, rankID, points) values 
-	('0','None','0000000000','male',1,0),
-	('1', 'Trung Chanh','0393514981','male', 1, 1),
-	('2', 'Trung Chanh1','0393514982','male', 2, 101),
-	('3', 'Trung Chanh2','0393514983','male', 3, 220)
+	('CS000','None','0000000000','male','R001',0),
+	('CS001', 'Trung Chanh','0393514981','male', 'R001', 1),
+	('CS002', 'Trung Chanh1','0393514982','male', 'R002', 101),
+	('CS003', 'Trung Chanh2','0393514983','male', 'R003', 220)
+
+go
+CREATE PROCEDURE createCustomerID
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @MaxID VARCHAR(5);
+    DECLARE @NewID INT;
+    DECLARE @StringID VARCHAR(5);
+
+    -- Step 1: Get the highest existing id from Customers
+    SELECT @MaxID = MAX(id) FROM Customers WHERE id LIKE 'CS%';
+
+    -- Step 2: If there are no existing IDs, start with 'CS001', otherwise extract and increment the numeric part
+    IF @MaxID IS NULL
+    BEGIN
+        SET @NewID = 1;
+    END
+    ELSE
+    BEGIN
+        -- Extract the numeric part from the highest existing id
+        SET @NewID = CAST(SUBSTRING(@MaxID, 3, 3) AS INT) + 1;
+    END
+
+    -- Step 3: Convert the new ID back to a string with leading zeros
+    SET @StringID = 'CS' + RIGHT('000' + CAST(@NewID AS VARCHAR(3)), 3);
+
+    -- Return the new id
+    SELECT @StringID AS NewCustomerID;
+END;
+GO
 
 
---select * from Customers
-
---select * from ranks
 
 
 
-
-	
-
+--Orders
 create table Orders (
 	orderID varchar(20) primary key , 
 	orderDate datetime not null , 
@@ -264,10 +478,10 @@ create table Orders (
 )
 
 --drop table Orders
-select * from orders
+
 --delete from orders where orderID like 'O120524001'
 
-
+--OrderDetails
 CREATE TABLE OrderDetails (
     orderDetailID int identity(1,1) PRIMARY KEY,
     orderID VARCHAR(20) NOT NULL,
@@ -279,7 +493,8 @@ CREATE TABLE OrderDetails (
     FOREIGN KEY (orderID) REFERENCES Orders(orderID),
     FOREIGN KEY (productID) REFERENCES Products(pid)
 );
---drop table OrderDetails --select * from OrderDetails
+--drop table OrderDetails 
+--select * from OrderDetails
 	
 
 --generate Order ID 
@@ -330,12 +545,5 @@ go
 
 
 
-
---SELECT ORDERID, TOTAL, USERNAME, ORDERTYPE,CUSTOMERID 
---FROM orders 
---WHERE shiftID IN (
-    --SELECT shiftID 
-    --FROM shift 
-    --WHERE CONVERT(DATE, shiftEnd) = '2024-05-10');
 
 
